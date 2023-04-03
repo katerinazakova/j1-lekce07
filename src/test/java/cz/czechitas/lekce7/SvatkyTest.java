@@ -1,5 +1,6 @@
 package cz.czechitas.lekce7;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Month;
@@ -22,7 +23,7 @@ class SvatkyTest {
    */
 
   @Test
-  void kdyMaSvatek_ProVstupNasa_VraciValidniVystup() {
+  void kdyMaSvatek_ProVstupNatasa_VraciValidniVystup() {
     //Arrange
     Svatky svatky = new Svatky();
     String name = "Nataša";
@@ -53,26 +54,26 @@ class SvatkyTest {
    * Testuje metodu {@link Svatky#jeVSeznamu(String)}
    */
   @Test
-  void jeVSeznamu_ProVstupEmil_VraciExistujiciJmeno() {
+  void jeVSeznamu_ProVstupEmil_VraciTrue() {
     //Arrange
     Svatky svatky = new Svatky();
     String name = "Emil";
 
     //Act
-    Boolean actualResult = svatky.jeVSeznamu(name);
+    boolean actualResult = svatky.jeVSeznamu(name);
 
     //Assert
     assertTrue(actualResult);
   }
 
   @Test
-  void jeVSeznamu_ProVstupKatka_VraciNeexistujiciJmeno(){
+  void jeVSeznamu_ProVstupKatka_VraciFalse(){
     //Arrange
     Svatky svatky = new Svatky();
     String name = "Katka";
 
     //Act
-    Boolean actualResult = svatky.jeVSeznamu(name);
+    boolean actualResult = svatky.jeVSeznamu(name);
 
     //Assert
     assertFalse(actualResult);
@@ -127,71 +128,47 @@ class SvatkyTest {
    * Testuje metodu {@link Svatky#pridatSvatek(String, int, int)}
    */
   @Test
-  void pridatSvatekDenMesicInt_ProVstupDen_VraciPlatnyDen() {
+  @DisplayName("Simona má svátek 12.12.")
+  void pridatSvatekDenMesicInt_VraciPlatnyDenMesic() {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
     Svatky svatky = new Svatky();
-    String name = "Nataša";
-    int dayOfMonth = 18;
-    int month = 5;
+    String name = "Simona";
+    int dayOfMonth = 12;
+    int month = 12;
 
     //Act
-    MonthDay actualResult = svatky.kdyMaSvatek(name);
     svatky.pridatSvatek(name,dayOfMonth,month);
+    MonthDay actualResult = svatky.kdyMaSvatek(name);
+
 
     // assert
-    assertNotNull(svatky.kdyMaSvatek(name));
+    assertNotNull(actualResult);
     assertEquals(dayOfMonth,actualResult.getDayOfMonth());
-  }
-  @Test
-  void pridatSvatekDenMesicInt_ProVstupMesic_VraciPlatnyMesic() {
-    //Arrange
-    Svatky svatky = new Svatky();
-    String name = "Nataša";
-    int dayOfMonth = 18;
-    int month = 5;
-
-    //Act
-    MonthDay actualResult = svatky.kdyMaSvatek(name);
-    svatky.pridatSvatek(name,dayOfMonth,month);
-
-    // assert
     assertEquals(month,actualResult.getMonthValue());
   }
+
   /**
    * Testuje metodu {@link Svatky#pridatSvatek(String, int, Month)}
    */
   @Test
-  void pridatSvatekDenMesicMonth_ProVstupDen_VraciPlatnyDen() {
+  @DisplayName("Alexandr má svátek 27.února.")
+  void pridatSvatekDenMesicMonth_VraciPlatnyDenMesic() {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
     Svatky svatky = new Svatky();
-    String name = "Nataša";
-    int dayOfMonth = 18;
-    Month month = Month.MAY;
+    String name = "Alexandr";
+    int dayOfMonth = 27;
+    Month month = Month.FEBRUARY;
 
     //Act
-    MonthDay actualResult = svatky.kdyMaSvatek(name);
     svatky.pridatSvatek(name,dayOfMonth, month);
+    MonthDay actualResult = svatky.kdyMaSvatek(name);
+
 
     //Assert
-    assertNotNull(svatky.kdyMaSvatek(name));
+    assertNotNull(actualResult);
     assertEquals(dayOfMonth,actualResult.getDayOfMonth());
-  }
-
-  @Test
-  void pridatSvatekDenMesicMonth_ProVstupMesic_VraciPlatnyMesic() {
-    //Arrange
-    Svatky svatky = new Svatky();
-    String name = "Nataša";
-    int dayOfMonth = 18;
-    Month month = Month.MAY;
-
-    //Act
-    MonthDay actualResult = svatky.kdyMaSvatek(name);
-    svatky.pridatSvatek(name,dayOfMonth, month);
-
-    //Assert
     assertEquals(month,actualResult.getMonth());
   }
 
@@ -204,17 +181,17 @@ class SvatkyTest {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
     Svatky svatky = new Svatky();
-    String name = "Nataša";
-    int dayOfMonth = 18;
-    int month = 5;
+    String name = "Adéla";
+    int dayOfMonth = 2;
+    int month = 9;
     MonthDay monthDay = MonthDay.of(month, dayOfMonth);
 
     //Act
-    MonthDay actualResult = svatky.kdyMaSvatek(name);
     svatky.pridatSvatek(name,monthDay);
+    MonthDay actualResult = svatky.kdyMaSvatek(name);
 
     //Assert
-    assertNotNull(svatky.kdyMaSvatek(name));
+    assertNotNull(actualResult);
     assertEquals(monthDay,actualResult);
   }
 
@@ -226,7 +203,7 @@ class SvatkyTest {
     //Arrange
     Svatky svatky = new Svatky();
     String jmeno = "Kamila";
-    int originalCount = svatky.getSeznamJmen().size();
+    int originalCount = 37;
     int expectedResult = originalCount - 1;
 
     //Act
