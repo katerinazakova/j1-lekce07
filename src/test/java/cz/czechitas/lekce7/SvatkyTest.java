@@ -128,7 +128,7 @@ class SvatkyTest {
    * Testuje metodu {@link Svatky#pridatSvatek(String, int, int)}
    */
   @Test
-  @DisplayName("Simona má svátek 12.12.")
+  @DisplayName("Simona, 12.12.")
   void pridatSvatekDenMesicInt_VraciPlatnyDenMesic() {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
@@ -152,6 +152,7 @@ class SvatkyTest {
    * Testuje metodu {@link Svatky#pridatSvatek(String, int, Month)}
    */
   @Test
+  @DisplayName("Alexandr, 27. února")
   void pridatSvatekDenMesicMonth_VraciPlatnyDenMesic() {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
@@ -181,10 +182,7 @@ class SvatkyTest {
     //Arrange
     Svatky svatky = new Svatky();
     String name = "Adéla";
-    int dayOfMonth = 2;
-    int month = 9;
-    MonthDay monthDay = MonthDay.of(month, dayOfMonth);
-
+    MonthDay monthDay = MonthDay.of(Month.SEPTEMBER,9);
     //Act
     svatky.pridatSvatek(name,monthDay);
     MonthDay actualResult = svatky.kdyMaSvatek(name);
