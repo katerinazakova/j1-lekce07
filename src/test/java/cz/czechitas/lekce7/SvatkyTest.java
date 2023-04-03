@@ -152,7 +152,6 @@ class SvatkyTest {
    * Testuje metodu {@link Svatky#pridatSvatek(String, int, Month)}
    */
   @Test
-  @DisplayName("Alexandr má svátek 27.února.")
   void pridatSvatekDenMesicMonth_VraciPlatnyDenMesic() {
     //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     //Arrange
